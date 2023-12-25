@@ -12,6 +12,15 @@ public class Workout {
     private String name;
     private String description;
     private int duration;
+    private String difficulty;
+    
+    
+	public String getDifficulty() {
+		return difficulty;
+	}
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
+	}
 	public Long getWorkoutId() {
 		return workoutId;
 	}

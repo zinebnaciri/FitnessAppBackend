@@ -3,9 +3,11 @@ package com.tcs.fitnessappspringboot.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tcs.fitnessappspringboot.entity.User;
 import com.tcs.fitnessappspringboot.entity.WorkoutLog;
 import com.tcs.fitnessappspringboot.repository.WorkoutLogRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +16,7 @@ public class WorkoutLogService {
 
     @Autowired
     private WorkoutLogRepository workoutLogRepository;
+    
 
     public List<WorkoutLog> getAllWorkoutLogs() {
         return workoutLogRepository.findAll();

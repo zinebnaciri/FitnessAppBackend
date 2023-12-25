@@ -1,5 +1,7 @@
 package com.tcs.fitnessappspringboot.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,35 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private LocalDate dateOfBirth;
+    private String gender;
+    private double height;
+    private double weight;
+   
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public double getHeight() {
+		return height;
+	}
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	public double getWeight() {
+		return weight;
+	}
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
 	public Long getUserId() {
 		return userId;
 	}

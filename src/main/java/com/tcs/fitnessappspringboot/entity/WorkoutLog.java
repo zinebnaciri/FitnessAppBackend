@@ -11,17 +11,18 @@ public class WorkoutLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long logId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "workout_id")
     private Workout workout;
 
     private LocalDate logDate;
     private int duration;
     private int caloriesBurned;
+    
 	public Long getLogId() {
 		return logId;
 	}
