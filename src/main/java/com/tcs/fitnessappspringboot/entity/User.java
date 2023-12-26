@@ -1,72 +1,74 @@
 package com.tcs.fitnessappspringboot.entity;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 import javax.persistence.*;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+@EqualsAndHashCode
+public class User implements UserDetails {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
+	private String firstName;
+	private String lastName;
+	private String username;
+	private String password;
+	private String email;
+	private LocalDate dateOfBirth;
+	private String gender;
+	private double height;
+	private double weight;
 
-    private String username;
-    private String password;
-    private String email;
-    private LocalDate dateOfBirth;
-    private String gender;
-    private double height;
-    private double weight;
-   
-	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public double getHeight() {
-		return height;
-	}
-	public void setHeight(double height) {
-		this.height = height;
-	}
-	public double getWeight() {
-		return weight;
-	}
-	public void setWeight(double weight) {
-		this.weight = weight;
-	}
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+
+	@Override
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getEmail() {
+
+	@Override
+	public String getUsername() {
 		return email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-   
-}
 
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+}

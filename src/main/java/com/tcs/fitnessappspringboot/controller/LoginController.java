@@ -1,6 +1,13 @@
 package com.tcs.fitnessappspringboot.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,18 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tcs.fitnessappspringboot.auth.LoginRequest;
 import com.tcs.fitnessappspringboot.auth.LoginResponse;
+import com.tcs.fitnessappspringboot.auth.RegisterRequest;
+import com.tcs.fitnessappspringboot.service.AuthentificationService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
+@CrossOrigin
 public class LoginController {
+	@Autowired
+	private AuthentificationService service;
 
- @PostMapping("/login")
- public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-     // Validate credentials and authenticate user (use Spring Security, for example)
+	@PostMapping("/register")
+	public ResponseEntity<LoginResponse> register(@RequestBody RegisterRequest request) {
+		return ResponseEntity.ok(service.register(request));
+	}
 
-     // If authentication is successful, generate a token or set a session
-     String token = "dc578f73-8071-4258-bf7f-f17e5620e2b9";
+	@PostMapping("/login")
+	public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest request) {
+		return ResponseEntity.ok(service.authenticate(request));
+	}
 
-     return ResponseEntity.ok(new LoginResponse(token));
- }
+	@PostMapping("/refresh-token")
+	public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		service.refreshToken(request, response);
+	}
+
 }

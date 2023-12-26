@@ -8,6 +8,7 @@ public class FitnessappSpringbootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FitnessappSpringbootApplication.class, args);
+		System.out.println("succes");
 	}
 
 }

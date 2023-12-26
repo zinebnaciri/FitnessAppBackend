@@ -1,19 +1,25 @@
 package com.tcs.fitnessappspringboot.auth;
 
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginResponse {
  private String token;
+ @JsonProperty("access_token")
+ private String accessToken;
+ @JsonProperty("refresh_token")
+ private String refreshToken;
 
- public LoginResponse(String token) {
-     this.token = token;
- }
-
-public String getToken() {
-	return token;
-}
-
-public void setToken(String token) {
-	this.token = token;
-}
 
 
 }
