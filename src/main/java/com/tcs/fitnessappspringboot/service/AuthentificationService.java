@@ -40,7 +40,7 @@ public class AuthentificationService {
 
 	public LoginResponse register(RegisterRequest request) {
 		var user = User.builder().firstName(request.getFirstname()).lastName(request.getLastname())
-				.email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
+				.email(request.getEmail()).username(request.getUsername()).password(passwordEncoder.encode(request.getPassword()))
 				.dateOfBirth(request.getDateOfBirth()).gender(request.getGender()).height(request.getHeight())
 				.weight(request.getWeight()).build();
 
