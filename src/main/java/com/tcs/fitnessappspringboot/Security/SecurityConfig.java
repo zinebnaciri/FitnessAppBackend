@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.web.cors.CorsConfiguration;
 
 
 @Configuration
@@ -25,12 +26,17 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/public-endpoint/**").permitAll()
 				.antMatchers("/api/auth/logout").authenticated()
-				// Other endpoint configurations...
+				
+				
 				.and().logout().logoutUrl("/api/auth/logout").addLogoutHandler(logoutHandler)
 				.logoutSuccessHandler((request, response, authentication) -> {
 					SecurityContextHolder.clearContext();
 					response.setStatus(HttpServletResponse.SC_OK);
 				});
+	/*
+				.and()
+	            .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
+*/
 		return http.build();
 	}
 

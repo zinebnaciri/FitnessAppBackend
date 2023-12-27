@@ -19,9 +19,12 @@ public class GoalService {
 		return goalRepository.findAll();
 	}
 
-	public Optional<Goal> getGoalById(Long goalId) {
-		return goalRepository.findById(goalId);
-	}
+	public Optional<Goal> getGoalById(Long goalId, Long userId) {
+        // You might want to add logic here to ensure the goal belongs to the specified user
+        // For example, you could check if the goal has the correct user ID
+        return goalRepository.findById(goalId)
+                .filter(goal -> goal.getUser().getUserId().equals(userId));
+    }
 
 	public Goal saveGoal(Goal goal) {
 		// You can add validation or business logic before saving

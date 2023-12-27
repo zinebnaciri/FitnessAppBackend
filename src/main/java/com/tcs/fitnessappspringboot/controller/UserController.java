@@ -40,6 +40,10 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    // Add other endpoints as needed
+    @PutMapping("/{userId}")
+    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
+        User updatedUserData = userService.updateUser(userId, updatedUser);
+        return ResponseEntity.ok(updatedUserData);
+    }
 }
 

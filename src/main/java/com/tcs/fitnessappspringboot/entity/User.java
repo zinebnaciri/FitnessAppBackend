@@ -2,11 +2,14 @@ package com.tcs.fitnessappspringboot.entity;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +37,10 @@ public class User implements UserDetails {
 	private String gender;
 	private double height;
 	private double weight;
+	@OneToMany(mappedBy = "user")
+	@JsonBackReference
+	private List<Goal> goals;
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -59,7 +59,7 @@ public class AuthentificationService {
 		var refreshToken = jwtService.generateRefreshToken(user);
 		revokeAllUserTokens(user);
 		saveUserToken(user, jwtToken);
-		return LoginResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
+		return LoginResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).userId(user.getUserId()).build();
 	}
 
 	private void saveUserToken(User personne, String jwtToken) {

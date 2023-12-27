@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,5 +43,11 @@ public class LoginController {
 	public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		service.refreshToken(request, response);
 	}
+	 @PostMapping("/logout")
+	    public ResponseEntity<String> logout() {
+	        // Perform logout logic
 
+	        // Return a response indicating successful logout
+	        return ResponseEntity.status(HttpStatus.OK).body("Logout successful");
+	    }
 }
